@@ -1,13 +1,91 @@
 ---
-import Base from '../layouts/Base.astro'
+import Base from "../layouts/Base.astro";
+
+const pageTitle = "About Me";
+
+const identity = {
+  firstName: "Kyle",
+  country: "USA",
+  occupation: "IT Specialist",
+  hobbies: ["music", "gaming", "reading"],
+};
+
+const skills = [
+  "HTML",
+  "CSS",
+  "JavaScript",
+  "Alpine.js",
+  "Tailwind CSS",
+  "HTMX",
+  "Ruby",
+  "Docker",
+  "Astro",
+];
+
+const happy = true;
+const finished = false;
+const goal = 3;
+
+const skillColor = "navy";
+const fontWeight = "bold";
+const textCase = "uppercase";
 ---
 
-
-<Base>
-  <h1>About Me</h1>
+<Base pageTitle={pageTitle}>
+  <h1 class="text-purple-400 text-6xl">About Me</h1>
   <h2>… and my new Astro site!</h2>
 
-  <p>I am working through Astro's introductory tutorial. This is the second page on my website, & it's the first one I built myself!</p>
-  <p>This site will update as I complete more of the tutorial, so keep checking back & see how my journey is going!</p>
-  
+  <p class="mt-3">
+    I am working through Astro's introductory tutorial. This is the second page
+    on my website, & it's the first one I built myself!
+  </p>
+  <p class="mb-6">
+    This site will update as I complete more of the tutorial, so keep checking
+    back & see how my journey is going!
+  </p>
+
+  <p class="mb-1">Here are a few facts about me:</p>
+  <ul class="mb-6 list-disc list-inside">
+    <li>My name is {identity.firstName}</li>
+    <li>I live in {identity.country} & I work as a {identity.occupation}</li>
+    {
+      identity.hobbies.length >= 2 && (
+        <li>
+          Two of my hobbies are: {identity.hobbies[0]} & {identity.hobbies[1]}
+        </li>
+      )
+    }
+  </ul>
+  <p class="mb-1">My Skills include:</p>
+  <ul class="list-disc list-inside">
+    {skills.map((skill) => <li class="text-green-300 font-bold">{skill}</li>)}
+    <li class="demo">Placeholder</li>
+  </ul>
+
+  {
+    happy && (
+      <p class="mt-6">
+        I am happy to be learning Astro! I can't wait to see what I can build
+        with it!
+      </p>
+    )
+  }
+
+  {finished && <p>I finished this tutorial!</p>}
+
+  {
+    goal === 3 ? (
+      <p>My goal is to finish in 3 days.</p>
+    ) : (
+      <p>My goal is not 3 days.</p>
+    )
+  }
 </Base>
+
+<style define:vars={{ skillColor, fontWeight, textCase }}>
+  .demo {
+    color: var(--skillColor);
+    font-weight: var(--fontWeight);
+    text-transform: var(--textCase);
+  }
+</style>
