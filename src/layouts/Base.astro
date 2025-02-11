@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
-import Nav from "../components/Nav.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
 const { pageTitle } = Astro.props;
 ---
 
@@ -13,8 +14,9 @@ const { pageTitle } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <title>{pageTitle || "Astro Blog"}</title>
   </head>
-  <body class="p-6">
-    <Nav />
+  <body class="p-6 min-h-dvh grid grid-rows-[auto_1fr_auto]">
+    <Header />
     <slot />
+    <Footer />
   </body>
 </html>
